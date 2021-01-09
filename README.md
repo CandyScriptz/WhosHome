@@ -1,7 +1,7 @@
 # WhosHome
 A simple Python scanning tool.
 
-This is intended to be open source for anyone interested.
+This is intended to be open source for anyone interested. <br />
 More scanning/server options to be updated.
 
 **-------------------------------------------------------------------------------**
