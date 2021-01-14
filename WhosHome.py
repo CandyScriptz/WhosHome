@@ -47,8 +47,8 @@ if (userChoice == 1):
     print(yellow("CTRL + C to stop ping"))
     print("\n")
     targetPing = input(yellow("Enter an address to ping: "))
-    response = os.system("ping " + targetPing)
-    os.system("date")
+    response = os.system("timeout 5 ping " + targetPing)              # timeout is the amount of time the ping will run for in seconds
+    os.system("date")                                                 # I added 5 so the ping will run for 5 seconds
 
 elif (userChoice == 2):
     
