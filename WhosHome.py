@@ -37,33 +37,42 @@ print("\033[31;40mSCANNER MENU\033[m")
 print("\n")
 print(yellow("[1]")+green(" Ping a target"))
 print(yellow("[2]")+green(" Scan ports"))
-print(yellow("[3]")+green(" Exit Program"))
+print(yellow("[3]")+green(" Look up name servers"))
+print(yellow("[4]")+green(" Exit Program"))
 
 userChoice = int(input(yellow("Enter an option: ")))
 print("\n")
 
 if (userChoice == 1):
 
-    print(yellow("CTRL + C to stop ping"))
+    print(yellow("Ping timeout at 5"))
     print("\n")
     targetPing = input(yellow("Enter an address to ping: "))
-    response = os.system("ping " + targetPing)
+    response = os.system("timeout 5 ping " + targetPing)            
     os.system("date")
+    os.system("./WhosHome.py")
 
 elif (userChoice == 2):
     
     targetScan = input(yellow("Enter an address to scan: "))
+    bPort= int(input(yellow("Scan up to which port? (No more then 65535): ")))
     ts_ip = gethostbyname(targetScan)
     print("Starting scan on ", ts_ip)
-    for i in range(1,500):
+    for i in range(1,bPort):
         s = socket(AF_INET, SOCK_STREAM)
         conn = s.connect_ex((ts_ip, i))
         if (conn == 0):
             print("Port %d: OPEN" % (i,))
         s.close()
     print("Time taken:", time.time() - startTime)
+    os.system("./WhosHome.py")
 
 elif (userChoice == 3):
+    nsQuery = input(yellow("Enter a website to lookup: "))
+    os.system("nslookup " + nsQuery)
+    os.system("./WhosHome.py")
+    
+elif (userChoice == 4):
     print(black("\nThanks for using!"))
     
 else:
