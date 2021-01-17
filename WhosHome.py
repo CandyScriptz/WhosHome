@@ -55,10 +55,11 @@ if (userChoice == 1):
 elif (userChoice == 2):
     
     targetScan = input(yellow("Enter an address to scan: "))
-    bPort= int(input(yellow("Scan up to which port? (No more then 65535): ")))
+    aPort= int(input(yellow("Start scan at port:(Min 1): ")))
+    bPort= int(input(yellow("Stop scan at port(Max 65535): ")))
     ts_ip = gethostbyname(targetScan)
     print("Starting scan on ", ts_ip)
-    for i in range(1,bPort):
+    for i in range(aPort,bPort):
         s = socket(AF_INET, SOCK_STREAM)
         conn = s.connect_ex((ts_ip, i))
         if (conn == 0):
